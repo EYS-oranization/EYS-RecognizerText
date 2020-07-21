@@ -11,18 +11,18 @@ cam1 = cv2.VideoCapture(2)
 
 while 1:
 	frame1 = cam1.read()[1]
-	gray = cv2.cvtColor(frame1, cv2.COLOR_BGR2GRAY)
+	gray_picture = cv2.cvtColor(frame1, cv2.COLOR_BGR2GRAY)
 
 	now = datetime.datetime.now()
 	foto_name = now.strftime('/tmp/%M%S.jpg')
 	cv2.imwrite(foto_name, frame1)
 
-	text = pytesseract.image_to_string(gray)
-	
+	text = pytesseract.image_to_string(gray_picture, lang='rus')
+		
 	if text:
-		print(1)
+		print(text)
 	else:
-		print("ничего не распознал")
+		print("Ничего не распознал")
 
 	# sleep(0.03)
 
